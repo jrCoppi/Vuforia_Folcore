@@ -8,7 +8,13 @@ public class DesativaObjetos : MonoBehaviour {
 	void Start () {
 		GameObject[] allObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject a in allObjects) {
-			if (a.name == "VitoriaRegia") {
+			/*if (a.name == "vitoriaRegia") {
+				a.SetActive (false);
+			}*/
+			if (a.name == "pastoreiro") {
+				a.SetActive (false);
+			}
+			if (a.name == "boto") {
 				a.SetActive (false);
 			}
 		}
