@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Regras;
+using System;
 
 namespace Assets.Scripts.Cenario
 {

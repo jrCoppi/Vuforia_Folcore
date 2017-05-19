@@ -39,7 +39,7 @@ namespace Assets.Scripts.Cenario
                 }
             }
 
-            return Tabuleiro()
+			return null;
         }
 
         private static IList<Objeto> PopularObjetosDoJogo()
