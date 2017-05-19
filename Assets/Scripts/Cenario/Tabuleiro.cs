@@ -3,13 +3,13 @@ using System;
 
 namespace Assets.Scripts.Cenario
 {
-    abstract class Tabuleiro
+    static class Tabuleiro
     {
-        private Posicao[] posicoes;
-        private readonly IGameStatus status;
+        private static Posicao[] posicoes;
+        private static readonly IGameStatus status;
 
         
-        public Posicao[] Posicoes
+        public static Posicao[] Posicoes
         {
             get { return posicoes; }
             set
@@ -19,14 +19,6 @@ namespace Assets.Scripts.Cenario
                 Posicoes = value;
             }
         }
-        
-        
-
-        private Tabuleiro(Posicao[] posicoes)
-        {
-            
-        }
-
 
     }
 }

@@ -21,7 +21,7 @@ namespace Assets.Scripts.Cenario
 
         }
 
-        internal static Tabuleiro InicializarTabuleiro()
+        internal static void InicializarTabuleiro()
         {
             var objetos = PopularObjetosDoJogo();
             var posicoes = new Posicao[9];
@@ -39,7 +39,7 @@ namespace Assets.Scripts.Cenario
                 }
             }
 
-			return null;
+            Tabuleiro.Posicoes = posicoes;
         }
 
         private static IList<Objeto> PopularObjetosDoJogo()
