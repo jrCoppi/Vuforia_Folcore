@@ -2,7 +2,7 @@
 {
     public enum TipoPersonagem
     {
-        Negringo_Pastoreiro,
+        Negrinho_Pastoreiro,
         Vitoria_Regia,
         Boto,
         Curupira,

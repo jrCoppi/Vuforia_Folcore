@@ -2,12 +2,12 @@
 
 namespace Assets.Scripts.Cenario
 {
-    class Tabuleiro
+    abstract class Tabuleiro
     {
         private Posicao[] posicoes;
-        private Tabuleiro tabuleiro;
+        private readonly IGameStatus status;
 
-
+        
         public Posicao[] Posicoes
         {
             get { return posicoes; }
@@ -19,17 +19,7 @@ namespace Assets.Scripts.Cenario
             }
         }
         
-        /// <summary>
-        /// Singleton
-        /// </summary>
-        public static Tabuleiro Instance
-        {
-            get
-            {
-                return (tabuleiro ?? new Tabuleiro());
-            }
-        }
-
+        
 
         private Tabuleiro(Posicao[] posicoes)
         {

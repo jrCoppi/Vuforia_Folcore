@@ -1,47 +1,69 @@
 ﻿using Assets.Scripts.Cenario;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Regras
 {
-    class RegrasJogo : MonoBehaviour
+    class RegrasJogo : MonoBehaviour, IGameStatus
     {
-        private static RegrasJogo regrasJogo;
-        public RegrasJogo()
-        {
+        private Status status;
 
+        public Status MyProperty
+        {
+            get { return status; }
+            set
+            {
+                if (status == Status.Finalizado)
+                    TerminarJogo();
+            }
         }
 
-        public static RegrasJogo Instance
+        public Status GameStatus
         {
             get
             {
-                return (regrasJogo ?? new RegrasJogo());
+                throw new NotImplementedException();
             }
         }
 
-        internal static void IniciarJogo()
+        public int Pontuacao
         {
-            var objetos = PopularObjetosDoJogo();
-            var posicoes = new Posicao[9];
-
-            var indicePosicao = 0;
-
-            while (posicoes.Any(x => x == null)) // enquanto tiver caras nulos
+            get
             {
-                var valorId = new System.Random().Next(objetos.Max(x => x.Id)); // valor do id do objeto do personagem que tentaremos botar em uma posicao
-
-                if (posicoes.Where(x => x.Personagem != null && x.Personagem.Id == valorId).FirstOrDefault() == null)// beleza nao tem nenhuma posicao com um objeto dessee id
-                {
-                    posicoes[indicePosicao] = new Posicao(0, 0, 0, objetos.First(x => x.Id == valorId)); //achar o objeto com o valor do id gerado no random.
-                    indicePosicao++;
-                }
+                throw new NotImplementedException();
             }
         }
 
-        private static Objeto[] PopularObjetosDoJogo()
+        public void IniciarJogo()
         {
-            return new Objeto[0]; // vai pegar os GameObjects da Unity
+            throw new NotImplementedException();
+        }
+
+        public void PassarQuestao()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ProximaQuestao()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RespostaCorreta(bool errouUmaVez)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RespostaIncorreta()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TerminarJogo()
+        {
+            throw new NotImplementedException();
         }
     }
 }
