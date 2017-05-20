@@ -15,9 +15,14 @@ public class DesativaObjetos : MonoBehaviour {
 			if (a.name == "Boto") {
 				a.SetActive (false);
 			}
-			/*if (a.name == "Mula_Sem_Cabeca") {
+			if (a.name == "Mula_Sem_Cabeca") {
 				a.SetActive (false);
+			}
+			/*if (a.name == "Curupira") {
+				a.SetActive(false);
 			}*/
+
+
 
 
 		}
