@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Assets.Scripts.Cenario;
 
 namespace Assets.Scripts.Regras
 {
     public interface IGameStatus
     {
-        int Pontuacao{ get; }
-        void RespostaCorreta(bool errouUmaVez);
-        void RespostaIncorreta();
-        void ProximaQuestao();
+        int Pontuacao { get; }
+        Posicao.Desempenho ResponderPergunta(string resposta);
+        void  ProximaQuestao(Objeto personagem);
         void PassarQuestao();
         void IniciarJogo();
         void TerminarJogo();
         Status GameStatus { get; }
+        PerguntaJogo PerguntaAtual { get; set; }
+
+
     }
 
     public enum Status

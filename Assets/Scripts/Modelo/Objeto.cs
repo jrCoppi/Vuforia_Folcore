@@ -2,16 +2,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Objeto : MonoBehaviour
 {
 
     public int Id { get; set; }
-
-    [Obsolete("Como o enum vai ser o nome, aqui acho que nao precisa mais")]
     public string Nome { get; set; }
-
     public TipoPersonagem Personagem { get; set; }
     public bool Utilizado { get; set; }
     public bool AcertoComErro { get; set; }
@@ -22,7 +20,25 @@ public class Objeto : MonoBehaviour
         Objetos = new List<GameObject>();
         this.Id = id;
         this.Personagem = personagem;
+        this.Nome = personagem.GetDescription();
         Objetos.Add(objeto);
+        
+        
+    }
+    internal void RenderizarPersonagem()
+    {
+        foreach (var objeto in Objetos)
+        {
+            objeto.SetActive(true);
+        }
+    }
+
+    internal void OcultarPersonagem()
+    {
+        foreach (var objeto in Objetos)
+        {
+            objeto.SetActive(false);
+        }
     }
 
 
@@ -38,3 +54,4 @@ public class Objeto : MonoBehaviour
 
     }
 }
+

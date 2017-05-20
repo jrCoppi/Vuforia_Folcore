@@ -2,7 +2,7 @@
 {
     public class Posicao
     {
-        public enum Desempenho { Erro, Acerto, AcertoComErro };
+        public enum Desempenho { Erro, Acerto, Acerto_Com_Erro, Nao_Respondido };
 
         public int X { get; set; }
         public int Y { get; set; }

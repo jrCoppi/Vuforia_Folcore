@@ -6,9 +6,10 @@ using UnityEngine;
 
 namespace Assets.Scripts.Cenario
 {
-    public class Setup: MonoBehaviour
+    public class Setup : MonoBehaviour
     {
         private static Setup setupInicial;
+        public IList<Objeto> ObjetosNoJogo { get; set; }
         public static Setup Instance
         {
             get
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Cenario
 
         }
 
-        internal static void InicializarTabuleiro()
+        internal void InicializarTabuleiro()
         {
             var objetos = PopularObjetosDoJogo();
             var posicoes = new Posicao[9];
@@ -38,11 +39,11 @@ namespace Assets.Scripts.Cenario
                     indicePosicao++;
                 }
             }
-
+            ObjetosNoJogo = objetos;
             Tabuleiro.Posicoes = posicoes;
         }
 
-        private static IList<Objeto> PopularObjetosDoJogo()
+        private IList<Objeto> PopularObjetosDoJogo()
         {
             var objetosCena = FindObjectsOfType<GameObject>();
             SortedList<int, Objeto> personagensJogo = new SortedList<int, Objeto>(); //tipo um hashmap
@@ -51,6 +52,7 @@ namespace Assets.Scripts.Cenario
             foreach (GameObject objeto in objetosCena)
             {
                 TipoPersonagem personagem = GetPersonagemById(objeto.name);
+                objeto.SetActive(false);
 
                 if (personagensJogo.ContainsKey((int)personagem)) // mula sem cabeça, tem varios fogos... neste caso pega o objeto criado e add mais um gameObjet
                     personagensJogo[(int)personagem].Objetos.Add(objeto);
