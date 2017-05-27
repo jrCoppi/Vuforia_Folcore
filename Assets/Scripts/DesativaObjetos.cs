@@ -6,9 +6,9 @@ public class DesativaObjetos : MonoBehaviour {
 	void Start () {
 		GameObject[] allObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject a in allObjects) {
-			if (a.name == "Vitoria_Regia") {
+			/*if (a.name == "Vitoria_Regia") {
 				a.SetActive (false);
-			}
+			}*/
 			if (a.name == "Negrinho_Pastoreiro") {
 				a.SetActive (false);
 			}
@@ -18,9 +18,9 @@ public class DesativaObjetos : MonoBehaviour {
 			if (a.name == "Mula_Sem_Cabeca") {
 				a.SetActive (false);
 			}
-			/*if (a.name == "Curupira") {
+			if (a.name == "Curupira") {
 				a.SetActive(false);
-			}*/
+			}
 
 
 
