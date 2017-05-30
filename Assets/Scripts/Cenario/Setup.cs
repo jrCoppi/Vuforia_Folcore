@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Regras;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,9 @@ namespace Assets.Scripts.Cenario
         {
             get
             {
-                return (setupInicial ?? new Setup());
+                if (setupInicial == null)
+                    setupInicial = new Setup();
+                return (setupInicial);
             }
         }
         private Setup()
@@ -26,7 +29,6 @@ namespace Assets.Scripts.Cenario
         {
             var objetos = PopularObjetosDoJogo();
             var posicoes = new Posicao[9];
-
             var indicePosicao = 0;
 
             while (posicoes.Any(x => x == null)) // enquanto tiver caras nulos
@@ -58,6 +60,11 @@ namespace Assets.Scripts.Cenario
                     personagensJogo[(int)personagem].Objetos.Add(objeto);
                 else
                     personagensJogo.Add((int)personagem, new Objeto(id++, personagem, objeto));
+
+                if (IsAButton(objeto.name))
+                {
+                    PerguntaJogo.AddAlternativa(new Modelo.Alternativa(objeto));
+                }
             }
 
             return personagensJogo.Values;
@@ -67,6 +74,11 @@ namespace Assets.Scripts.Cenario
         {
             //padronizar todos os ids tem que ser igual ao que ta mapeado nesse enum. Evitaremos assim um mte de if ou um switch...
             return (TipoPersonagem)Enum.Parse(typeof(TipoPersonagem), name);
+        }
+
+        private bool IsAButton(string nomeObjeto)
+        {
+            return nomeObjeto.Trim().ToLower().StartsWith("alternativa");
         }
     }
 }

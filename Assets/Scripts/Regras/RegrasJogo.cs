@@ -11,8 +11,6 @@ namespace Assets.Scripts.Regras
         private Status status = Status.Nao_Iniciado;
         private int pontuacaoAtual = 0;
         public PerguntaJogo PerguntaAtual { get; set; }
-
-
         public Status GameStatus
         {
             get { return status; }
@@ -22,7 +20,6 @@ namespace Assets.Scripts.Regras
                     TerminarJogo();
             }
         }
-
         public int Pontuacao
         {
             get
@@ -30,16 +27,12 @@ namespace Assets.Scripts.Regras
                 return Pontuacao;
             }
         }
-
-
         public void IniciarJogo()
         {
             GameStatus = Status.Em_Andamento;
             Setup.Instance.InicializarTabuleiro();
             // transicionar cena(ver como avança em cenas, sair do menu principak pra jogar)
         }
-
-
         private void RespostaCorreta(bool errouUmaVez)
         {
             if (!errouUmaVez)
@@ -48,12 +41,10 @@ namespace Assets.Scripts.Regras
                 pontuacaoAtual += 5;
 
         }
-
         private void RespostaIncorreta()
         {
             pontuacaoAtual -= 2;
         }
-
         public void TerminarJogo()
         {
             throw new NotImplementedException();
@@ -63,13 +54,11 @@ namespace Assets.Scripts.Regras
             RespostaIncorreta();
             //ProximaQuestao();
         }
-
         public void ProximaQuestao(Objeto personagem)
         {
             var alternativas = GerarAlternativas(personagem);
-            PerguntaAtual = new PerguntaJogo(alternativas[0].ToString(), alternativas.Select(x => x.Personagem.GetDescription()).ToArray());
+            PerguntaAtual = new PerguntaJogo(alternativas[0].Nome, alternativas.Select(x => x.Nome).Skip(1).ToArray());
         }
-
         private Objeto[] GerarAlternativas(Objeto personagem, int numeroAlternativas = 4)
         {
             var chaves = new HashSet<Objeto>() { personagem };
@@ -87,7 +76,6 @@ namespace Assets.Scripts.Regras
             }
             return chaves.ToArray();
         }
-
         public Posicao.Desempenho ResponderPergunta(string resposta)
         {
             if (resposta == PerguntaAtual.AlternativaCorreta && PerguntaAtual.Tentativas == 0)

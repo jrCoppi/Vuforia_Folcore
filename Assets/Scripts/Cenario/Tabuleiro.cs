@@ -1,13 +1,24 @@
-﻿using Assets.Scripts.Regras;
+﻿using Assets.Scripts.Modelo;
+using Assets.Scripts.Regras;
 using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Cenario
 {
-    static class Tabuleiro
+    public class Tabuleiro : MonoBehaviour
     {
         private static Posicao[] posicoes;
         private static IGameStatus status = new RegrasJogo();
         public static int PosicaoAtual { get; set; }
+
+        void Start()
+        {
+            IniciarJogo();
+        }
+        void Update()
+        {
+
+        }
 
         public static Posicao[] Posicoes
         {
@@ -20,26 +31,26 @@ namespace Assets.Scripts.Cenario
             }
         }
 
-        public static void IniciarJogo()
+        public void IniciarJogo()
         {
             status.IniciarJogo();
             DeslocarTabuleiro();
             PosicaoAtual = -1;
         }
 
-        private static void AtivarObjeto(Posicao posicao)
+        private void AtivarObjeto(Posicao posicao)
         {
             posicao.Personagem.RenderizarPersonagem();
             status.ProximaQuestao(posicao.Personagem);
             posicao.Percorrido = true;
         }
 
-        private static void InativarObjeto(Posicao posicao)
+        private void InativarObjeto(Posicao posicao)
         {
             posicao.Personagem.OcultarPersonagem();
         }
 
-        public static void DeslocarTabuleiro()
+        public void DeslocarTabuleiro()
         {
             if (PosicaoAtual < posicoes.Length)
             {
@@ -48,14 +59,16 @@ namespace Assets.Scripts.Cenario
             }
         }
 
-        public static void ResponderPerguntaAtual(string resposta)
+        public void ResponderPerguntaAtual(string resposta)
         {
             var resultado = status.ResponderPergunta(resposta);
 
             if (resultado != Posicao.Desempenho.Nao_Respondido)
+            {
                 Posicoes[PosicaoAtual].Resultado = resultado;
-
-            InativarObjeto(Posicoes[PosicaoAtual]);
+                InativarObjeto(Posicoes[PosicaoAtual]);
+                DeslocarTabuleiro();
+            }
         }
 
 

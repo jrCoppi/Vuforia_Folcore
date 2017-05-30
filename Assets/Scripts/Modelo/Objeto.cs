@@ -21,9 +21,7 @@ public class Objeto : MonoBehaviour
         this.Id = id;
         this.Personagem = personagem;
         this.Nome = personagem.GetDescription();
-        Objetos.Add(objeto);
-        
-        
+        Objetos.Add(objeto);        
     }
     internal void RenderizarPersonagem()
     {
