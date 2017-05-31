@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Assets.Scripts
 {
@@ -34,12 +35,14 @@ namespace Assets.Scripts
     }
     public static class EnumHelper
     {
-       public static string GetDescription(this TipoPersonagem enumVal)
+    
+        public static string GetEnumDescription(this TipoPersonagem value)
         {
-            var type = enumVal.GetType();
-            var memInfo = type.GetMember(enumVal.ToString());
-            var attributes = memInfo[0].GetCustomAttributes(type, false);
-            return (attributes.Length > 0) ? attributes[0].ToString() : null;
+            Type type = typeof(TipoPersonagem);
+            
+            var field = type.GetField(value.ToString());
+            var customAttribute = field.GetCustomAttributes(typeof(DescriptionAttribute), false);
+            return customAttribute.Length > 0 ? ((DescriptionAttribute)customAttribute[0]).Description : "";
         }
     }
 }

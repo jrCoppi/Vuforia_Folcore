@@ -20,7 +20,7 @@ public class Objeto : MonoBehaviour
         Objetos = new List<GameObject>();
         this.Id = id;
         this.Personagem = personagem;
-        this.Nome = personagem.GetDescription();
+        this.Nome = personagem.GetEnumDescription();
         Objetos.Add(objeto);        
     }
     internal void RenderizarPersonagem()

@@ -13,7 +13,7 @@ namespace Assets.Scripts.Regras
         public int Tentativas { get; set; }
         private static IList<Alternativa> alternativas;
 
-        public PerguntaJogo(string alternativaCorreta, IList<string> _alternativas)
+        public PerguntaJogo(string alternativaCorreta, List<string> _alternativas)
         {
 
             this.AlternativaCorreta = alternativaCorreta;

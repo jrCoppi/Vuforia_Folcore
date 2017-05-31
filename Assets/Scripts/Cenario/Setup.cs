@@ -10,7 +10,7 @@ namespace Assets.Scripts.Cenario
     public class Setup : MonoBehaviour
     {
         private static Setup setupInicial;
-        public IList<Objeto> ObjetosNoJogo { get; set; }
+        public static IList<Objeto> ObjetosNoJogo { get; set; }
         public static Setup Instance
         {
             get
@@ -22,20 +22,20 @@ namespace Assets.Scripts.Cenario
         }
         private Setup()
         {
-
+            
         }
 
         internal void InicializarTabuleiro()
         {
-            var objetos = PopularObjetosDoJogo();
-            var posicoes = new Posicao[9];
+            var objetos = PopularObjetosDoJogo().ToArray();
+            var posicoes = new Posicao[5];
             var indicePosicao = 0;
 
             while (posicoes.Any(x => x == null)) // enquanto tiver caras nulos
             {
-                var valorId = new System.Random().Next(objetos.Max(x => x.Id)); // valor do id do objeto do personagem que tentaremos botar em uma posicao
+                var valorId = new System.Random().Next(1,objetos.Max(x => x.Id)+1); // valor do id do objeto do personagem que tentaremos botar em uma posicao
 
-                if (posicoes.Where(x => x.Personagem != null && x.Personagem.Id == valorId).FirstOrDefault() == null)// beleza nao tem nenhuma posicao com um objeto dessee id
+                if (posicoes.FirstOrDefault(x => x != null && x.Personagem.Id == valorId )== null)// beleza nao tem nenhuma posicao com um objeto dessee id
                 {
                     posicoes[indicePosicao] = new Posicao(0, 0, 0, objetos.First(x => x.Id == valorId)); //achar o objeto com o valor do id gerado no random.
                     indicePosicao++;
@@ -53,14 +53,16 @@ namespace Assets.Scripts.Cenario
 
             foreach (GameObject objeto in objetosCena)
             {
-                TipoPersonagem personagem = GetPersonagemById(objeto.name);
-                objeto.SetActive(false);
+                TipoPersonagem? personagem = GetPersonagemById(objeto.name);
+                if (personagem.HasValue)
+                {
+                    objeto.SetActive(false);
 
-                if (personagensJogo.ContainsKey((int)personagem)) // mula sem cabeça, tem varios fogos... neste caso pega o objeto criado e add mais um gameObjet
-                    personagensJogo[(int)personagem].Objetos.Add(objeto);
-                else
-                    personagensJogo.Add((int)personagem, new Objeto(id++, personagem, objeto));
-
+                    if (personagensJogo.ContainsKey((int)personagem)) // mula sem cabeça, tem varios fogos... neste caso pega o objeto criado e add mais um gameObjet
+                        personagensJogo[(int)personagem].Objetos.Add(objeto);
+                    else
+                        personagensJogo.Add((int)personagem, new Objeto(id++, personagem.Value, objeto));
+                }
                 if (IsAButton(objeto.name))
                 {
                     PerguntaJogo.AddAlternativa(new Modelo.Alternativa(objeto));
@@ -70,10 +72,28 @@ namespace Assets.Scripts.Cenario
             return personagensJogo.Values;
         }
 
-        private static TipoPersonagem GetPersonagemById(string name)
+        private TipoPersonagem? GetPersonagemById(string name)
         {
+            TipoPersonagem? personagem = default(TipoPersonagem);
+
             //padronizar todos os ids tem que ser igual ao que ta mapeado nesse enum. Evitaremos assim um mte de if ou um switch...
-            return (TipoPersonagem)Enum.Parse(typeof(TipoPersonagem), name);
+            if(!this.TryParse(name, out personagem))
+            {
+                return null;
+            }
+
+            return personagem;
+        }
+
+        public bool TryParse<TEnum>(string value, out TEnum? result) where TEnum : struct, IConvertible
+        {
+            var retValue = value == null ?
+                        false :
+                        Enum.IsDefined(typeof(TEnum), value);
+            result = retValue ?
+                        (TEnum)Enum.Parse(typeof(TEnum), value) :
+                        default(TEnum);
+            return retValue;
         }
 
         private bool IsAButton(string nomeObjeto)

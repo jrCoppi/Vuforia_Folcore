@@ -13,6 +13,7 @@ namespace Assets.Scripts.Cenario
 
         void Start()
         {
+            posicoes = new Posicao[5];
             IniciarJogo();
         }
         void Update()
@@ -25,9 +26,9 @@ namespace Assets.Scripts.Cenario
             get { return posicoes; }
             set
             {
-                if (posicoes.Length > 9)
+                if (posicoes.Length > 5)
                     throw new ArgumentOutOfRangeException("Limitar Posicao Tabuleiro a apenas 9 elemntos");
-                Posicoes = value;
+                posicoes = value;
             }
         }
 

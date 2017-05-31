@@ -57,24 +57,25 @@ namespace Assets.Scripts.Regras
         public void ProximaQuestao(Objeto personagem)
         {
             var alternativas = GerarAlternativas(personagem);
-            PerguntaAtual = new PerguntaJogo(alternativas[0].Nome, alternativas.Select(x => x.Nome).Skip(1).ToArray());
+            PerguntaAtual = new PerguntaJogo(personagem.Nome, alternativas.Where(x=> x.Nome != personagem.Nome).Select(x => x.Nome).ToList());
         }
         private Objeto[] GerarAlternativas(Objeto personagem, int numeroAlternativas = 4)
         {
-            var chaves = new HashSet<Objeto>() { personagem };
-            var maxID = Setup.Instance.ObjetosNoJogo.Max(x => x.Id);
+            var chaves = new SortedList<int, Objeto>();
+            chaves.Add(personagem.Id, personagem);
+            var maxID = Setup.ObjetosNoJogo.Max(x => x.Id);
 
-            for (int i = 1; i < numeroAlternativas; i++)
+            while(chaves.Count < numeroAlternativas)
             {
-                var idAleatorio = new System.Random().Next(maxID);
-                var personagemAleatorio = Setup.Instance.ObjetosNoJogo.First(x => x.Id == idAleatorio);
+                var idAleatorio = new System.Random().Next(1, maxID + 1);
+                var personagemAleatorio = Setup.ObjetosNoJogo.First(x => x.Id == idAleatorio);
 
-                if (!chaves.Contains(personagemAleatorio))
+                if (!chaves.ContainsKey(personagemAleatorio.Id))
                 {
-                    chaves.Add(personagemAleatorio);
+                    chaves.Add(personagemAleatorio.Id,personagemAleatorio);
                 }
             }
-            return chaves.ToArray();
+            return chaves.Values.ToArray();
         }
         public Posicao.Desempenho ResponderPergunta(string resposta)
         {
