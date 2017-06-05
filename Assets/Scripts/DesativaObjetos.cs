@@ -29,17 +29,17 @@ using UnityEngine.UI;
                 {
                     a.SetActive(false);
                 }
-                if (a.name == "Curupira") {
+                /*if (a.name == "Curupira") {
                     a.SetActive(false);
-                }
+                }*/
 				if (a.name == "Saci")
 				{
 					a.SetActive(false);
 				}
-				/*if (a.name == "Boitata")
+				if (a.name == "Boitata")
 				{
 					a.SetActive(false);
-				}*/
+				}
 
 		}
         }
