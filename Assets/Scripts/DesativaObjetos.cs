@@ -32,14 +32,14 @@ using UnityEngine.UI;
                 if (a.name == "Curupira") {
                     a.SetActive(false);
                 }
-				/*if (a.name == "Saci")
-				{
-					a.SetActive(false);
-				}*/
-				if (a.name == "Boitata")
+				if (a.name == "Saci")
 				{
 					a.SetActive(false);
 				}
+				/*if (a.name == "Boitata")
+				{
+					a.SetActive(false);
+				}*/
 
 		}
         }
