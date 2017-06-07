@@ -11,7 +11,7 @@ namespace Assets.Scripts.Regras
     {
         public string AlternativaCorreta { get; set; }
         public int Tentativas { get; set; }
-        private static IList<Alternativa> alternativas;
+        public static IList<Alternativa> Alternativas { get; set; }
 
         public PerguntaJogo(string alternativaCorreta, List<string> _alternativas)
         {
@@ -20,24 +20,26 @@ namespace Assets.Scripts.Regras
             _alternativas.Add(AlternativaCorreta);
             var pergunta = EmbaralharAlternativas(_alternativas.ToArray());
 
-            if (pergunta.Length != alternativas.Count)
+            if (pergunta.Length != Alternativas.Count)
                 throw new ArgumentException("Quantidade de alternativas fornecidas é maior que a configurada");
 
             for (int i = 0; i < pergunta.Length; i++)
             {
-                alternativas[i].Texto = _alternativas[i];
+                Alternativas[i].Texto = _alternativas[i];
                 if (pergunta[i] == AlternativaCorreta)
-                    alternativas[i].Correta = true;
+                    Alternativas[i].Correta = true;
             }
 
 
         }
 
+        
+
         public static void AddAlternativa(Alternativa alternativa)
         {
-            if (alternativas == null)
-                alternativas = new List<Alternativa>();
-            alternativas.Add(alternativa);
+            if (Alternativas == null)
+                Alternativas = new List<Alternativa>();
+            Alternativas.Add(alternativa);
         }
 
         private string[] EmbaralharAlternativas(string[] alternativas)
