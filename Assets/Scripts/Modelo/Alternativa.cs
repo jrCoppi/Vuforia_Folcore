@@ -30,11 +30,21 @@ namespace Assets.Scripts.Modelo
         {
             Questao = (char)alternativaAtual++;
             Button = objetoBotao.GetComponent(typeof(Button)) as Button;
+            Button.onClick.AddListener(OnClick);
+            Button.onClick.Invoke();
             Text = Button.GetComponentInChildren<Text>(true);
         }
         public override string ToString()
         {
             return Questao + ")" + Texto;
+        }
+
+        void OnClick()
+        {
+            if (Correta)
+                Button.GetComponent<Image>().color = Color.green;
+            else
+                Button.GetComponent<Image>().color = Color.red;
         }
     }
 }
