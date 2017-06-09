@@ -17,23 +17,19 @@ namespace Assets.Scripts.Regras
         {
 
             this.AlternativaCorreta = alternativaCorreta;
-            _alternativas.Add(AlternativaCorreta);
-            var pergunta = EmbaralharAlternativas(_alternativas.ToArray());
 
-            if (pergunta.Length != Alternativas.Count)
+            var embaralhar = EmbaralharAlternativas(_alternativas.ToArray(), alternativaCorreta);
+
+            if (embaralhar.Length != Alternativas.Count)
                 throw new ArgumentException("Quantidade de alternativas fornecidas é maior que a configurada");
 
-            for (int i = 0; i < pergunta.Length; i++)
+            for (int i = 0; i < embaralhar.Length; i++)
             {
-                Alternativas[i].Texto = _alternativas[i];
-                if (pergunta[i] == AlternativaCorreta)
+                Alternativas[i].Texto = embaralhar[i];
+                if (embaralhar[i] == AlternativaCorreta)
                     Alternativas[i].Correta = true;
             }
-
-
         }
-
-        
 
         public static void AddAlternativa(Alternativa alternativa)
         {
@@ -42,13 +38,20 @@ namespace Assets.Scripts.Regras
             Alternativas.Add(alternativa);
         }
 
-        private string[] EmbaralharAlternativas(string[] alternativas)
+        private string[] EmbaralharAlternativas(string[] alternativas, string alternativaCorreta)
         {
-            for (int i = 0; i < 5; i++)
+
+            var indexCorreto = new Random().Next(0, alternativas.Length + 1);
+            var perguntasEmbaralhadas = new string[alternativas.Length + 1];
+            for (int i = 0; i < alternativas.Length; i++)
             {
-                Swap(new Random().Next(alternativas.Length), new Random().Next(alternativas.Length), ref alternativas);
+                if (indexCorreto <= i)
+                    perguntasEmbaralhadas[i + 1] = alternativas[i];
+                else
+                    perguntasEmbaralhadas[i] = alternativas[i];
             }
-            return alternativas;
+            perguntasEmbaralhadas[indexCorreto] = alternativaCorreta;
+            return perguntasEmbaralhadas;
         }
         private void Swap(int a, int b, ref string[] alternativas)
         {
