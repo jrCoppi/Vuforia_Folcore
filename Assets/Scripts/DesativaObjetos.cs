@@ -29,9 +29,9 @@ using UnityEngine.UI;
                 {
                     a.SetActive(false);
                 }
-                /*if (a.name == "Curupira") {
+                if (a.name == "Curupira") {
                     a.SetActive(false);
-                }*/
+                }
 				if (a.name == "Saci")
 				{
 					a.SetActive(false);
@@ -40,6 +40,10 @@ using UnityEngine.UI;
 				{
 					a.SetActive(false);
 				}
+				/*if (a.name == "Cuca")
+				{
+					a.SetActive(false);
+				}*/
 
 		}
         }
