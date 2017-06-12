@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Modelo
@@ -37,12 +33,22 @@ namespace Assets.Scripts.Modelo
             return Questao + ")" + Texto;
         }
 
-        public void ValidarQuestao()
+		public void restore()
+		{
+			Button.GetComponent<Image>().color = Color.white;
+		}
+
+		public void ValidarQuestao()
         {
+			
             if (Correta)
-                Button.GetComponent<Image>().color = Color.green;
+			{
+				Button.GetComponent<Image>().color = Color.green;
+			}
             else
-                Button.GetComponent<Image>().color = Color.red;
+			{
+				Button.GetComponent<Image>().color = Color.red;
+			}
         }
     }
 }

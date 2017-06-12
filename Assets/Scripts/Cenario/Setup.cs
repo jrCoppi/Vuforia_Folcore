@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.Cenario
@@ -42,7 +41,7 @@ namespace Assets.Scripts.Cenario
                 }
             }
             ObjetosNoJogo = objetos;
-            Tabuleiro.Posicoes = posicoes;
+			Jogo.Instance.Posicoes = posicoes;
         }
 
         private IList<Objeto> PopularObjetosDoJogo()

@@ -26,9 +26,9 @@ namespace Assets.Scripts.Regras
             for (int i = 0; i < embaralhar.Length; i++)
             {
                 Alternativas[i].Texto = embaralhar[i];
-                if (embaralhar[i] == AlternativaCorreta)
-                    Alternativas[i].Correta = true;
-            }
+				Alternativas[i].Correta = (embaralhar[i] == AlternativaCorreta);
+				Alternativas[i].restore();
+			}
         }
 
         public static void AddAlternativa(Alternativa alternativa)
