@@ -47,13 +47,12 @@ namespace Assets.Scripts.Modelo
 				if (Correta)
 				{
 					Button.GetComponent<Image>().color = Color.green;
+					yield return new WaitForSeconds(1);
 				}
 				else
 				{
 					Button.GetComponent<Image>().color = Color.red;
 				}
-
-				yield return new WaitForSeconds(1);
 			}
 			Jogo.Instance.ResponderPerguntaAtual(texto);
 		}
