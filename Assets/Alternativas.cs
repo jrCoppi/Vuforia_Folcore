@@ -30,14 +30,16 @@ public class Alternativas : MonoBehaviour
 
 	private void responder(int indiceQuestao)
 	{
-		PerguntaJogo.Alternativas[indiceQuestao].ValidarQuestao();
+		
+		StartCoroutine(PerguntaJogo.Alternativas[indiceQuestao].ValidarQuestao());
+		//System.Threading.Thread.Sleep(3000);
 		/*reference = Thread.CurrentThread;
 
 		var t = new Thread(
 			() =>
 			{
 				System.Threading.Thread.Sleep(3000);*/
-				Jogo.Instance.ResponderPerguntaAtual(PerguntaJogo.Alternativas[indiceQuestao].Texto);
+		
 		/*	});
 		t.Start();
 		

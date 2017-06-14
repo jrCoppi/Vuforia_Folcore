@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Cenario;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Modelo
@@ -38,17 +40,22 @@ namespace Assets.Scripts.Modelo
 			Button.GetComponent<Image>().color = Color.white;
 		}
 
-		public void ValidarQuestao()
+		public IEnumerator ValidarQuestao()
         {
-			
-            if (Correta)
+			for (int i = 0; i < 2; i++)
 			{
-				Button.GetComponent<Image>().color = Color.green;
+				if (Correta)
+				{
+					Button.GetComponent<Image>().color = Color.green;
+				}
+				else
+				{
+					Button.GetComponent<Image>().color = Color.red;
+				}
+
+				yield return new WaitForSeconds(1);
 			}
-            else
-			{
-				Button.GetComponent<Image>().color = Color.red;
-			}
-        }
+			Jogo.Instance.ResponderPerguntaAtual(texto);
+		}
     }
 }
