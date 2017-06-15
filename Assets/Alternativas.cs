@@ -25,25 +25,9 @@ public class Alternativas : MonoBehaviour
 		responder(3);
 	}
 
-
-	static Thread reference;
-
 	private void responder(int indiceQuestao)
 	{
-		
 		StartCoroutine(PerguntaJogo.Alternativas[indiceQuestao].ValidarQuestao());
-		//System.Threading.Thread.Sleep(3000);
-		/*reference = Thread.CurrentThread;
-
-		var t = new Thread(
-			() =>
-			{
-				System.Threading.Thread.Sleep(3000);*/
-		
-		/*	});
-		t.Start();
-		
-		t.Join();*/
 	}
 
 }

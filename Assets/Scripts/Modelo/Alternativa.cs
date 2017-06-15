@@ -42,7 +42,7 @@ namespace Assets.Scripts.Modelo
 
 		public IEnumerator ValidarQuestao()
         {
-			for (int i = 0; i < 2; i++)
+			for (int i = 0; i < 1; i++)
 			{
 				if (Correta)
 				{

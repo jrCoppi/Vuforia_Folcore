@@ -60,6 +60,9 @@ namespace Assets.Scripts.Cenario
 			if (PosicaoAtual < posicoes.Length)
 			{
 				AtivarObjeto(Posicoes[PosicaoAtual]);
+			} else
+			{
+				Tabuleiro.finalizarJogo();
 			}
 		}
 

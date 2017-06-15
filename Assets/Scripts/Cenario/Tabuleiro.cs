@@ -13,5 +13,15 @@ namespace Assets.Scripts.Cenario
         {
 
         }
-    }
+
+		public static void finalizarJogo()
+		{
+			//UnityEditor.EditorUtility.DisplayDialog("Fim!", "Final de Jogo.", "Ok");
+			#if UNITY_EDITOR
+						UnityEditor.EditorApplication.isPlaying = false;
+			#else
+					Application.Quit();
+			#endif
+		}
+	}
 }
