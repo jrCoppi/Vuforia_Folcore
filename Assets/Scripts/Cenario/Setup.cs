@@ -27,7 +27,7 @@ namespace Assets.Scripts.Cenario
         internal void InicializarTabuleiro()
         {
             var objetos = PopularObjetosDoJogo().ToArray();
-            var posicoes = new Posicao[8];
+            var posicoes = new Posicao[9];
             var indicePosicao = 0;
 
             while (posicoes.Any(x => x == null)) // enquanto tiver caras nulos

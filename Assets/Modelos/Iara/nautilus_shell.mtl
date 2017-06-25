@@ -1,0 +1,25 @@
+# Blender MTL File: 'nautilus_shell.blend'
+# Material Count: 2
+
+newmtl Mat_ground
+Ns 96.078431
+Ka 0.079991 0.131943 0.131943
+Kd 0.013466 0.034004 0.042909
+Ks 0.534010 0.882923 0.882923
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 3
+
+newmtl Mat_nautilus_shell
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.630158 0.640000 0.480686
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd texture_nautilus.png
+map_Bump bump_nautilus_shell.png
+map_Ks texture_nautilus.png

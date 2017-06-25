@@ -22,7 +22,7 @@ namespace Assets.Scripts.Cenario
 
 		public Jogo()
 		{
-			posicoes = new Posicao[8];
+			posicoes = new Posicao[9];
 			PosicaoAtual = 0;
 		}
 
@@ -31,8 +31,8 @@ namespace Assets.Scripts.Cenario
 			get { return posicoes; }
 			set
 			{
-				if (posicoes.Length > 8)
-					throw new ArgumentOutOfRangeException("Limitar Posicao Tabuleiro a apenas 8 elemntos");
+				if (posicoes.Length > 9)
+					throw new ArgumentOutOfRangeException("Limitar Posicao Tabuleiro a apenas 9 elemntos");
 				posicoes = value;
 			}
 		}

@@ -40,10 +40,10 @@ using UnityEngine.UI;
 				{
 					a.SetActive(false);
 				}
-				/*if (a.name == "Cuca")
+				if (a.name == "Cuca")
 				{
 					a.SetActive(false);
-				}*/
+				}
 
 		}
         }
