@@ -7,7 +7,7 @@ namespace Assets.Scripts.Regras
         int Pontuacao { get; }
         Posicao.Desempenho ResponderPergunta(string resposta);
         void  ProximaQuestao(Objeto personagem);
-        void PassarQuestao();
+        Posicao.Desempenho PassarQuestao();
         void IniciarJogo();
         void TerminarJogo();
         Status GameStatus { get; }

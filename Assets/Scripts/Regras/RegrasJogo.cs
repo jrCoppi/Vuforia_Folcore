@@ -24,7 +24,7 @@ namespace Assets.Scripts.Regras
         {
             get
             {
-                return Pontuacao;
+                return pontuacaoAtual;
             }
         }
         public void IniciarJogo()
@@ -49,15 +49,16 @@ namespace Assets.Scripts.Regras
         {
             throw new NotImplementedException();
         }
-        public void PassarQuestao()
+        public Posicao.Desempenho PassarQuestao()
         {
             RespostaIncorreta();
+            return Posicao.Desempenho.Erro;
             //ProximaQuestao();
         }
         public void ProximaQuestao(Objeto personagem)
         {
             var alternativas = GerarAlternativas(personagem);
-            PerguntaAtual = new PerguntaJogo(personagem.Nome, alternativas.Where(x=> x.Nome != personagem.Nome).Select(x => x.Nome).ToList());
+            PerguntaAtual = new PerguntaJogo(personagem.Nome, alternativas.Where(x => x.Nome != personagem.Nome).Select(x => x.Nome).ToList());
         }
         private Objeto[] GerarAlternativas(Objeto personagem, int numeroAlternativas = 4)
         {
@@ -65,14 +66,14 @@ namespace Assets.Scripts.Regras
             chaves.Add(personagem.Id, personagem);
             var maxID = Setup.ObjetosNoJogo.Max(x => x.Id);
 
-            while(chaves.Count < numeroAlternativas)
+            while (chaves.Count < numeroAlternativas)
             {
                 var idAleatorio = new System.Random().Next(1, maxID + 1);
                 var personagemAleatorio = Setup.ObjetosNoJogo.First(x => x.Id == idAleatorio);
 
                 if (!chaves.ContainsKey(personagemAleatorio.Id))
                 {
-                    chaves.Add(personagemAleatorio.Id,personagemAleatorio);
+                    chaves.Add(personagemAleatorio.Id, personagemAleatorio);
                 }
             }
             return chaves.Values.ToArray();
@@ -91,8 +92,7 @@ namespace Assets.Scripts.Regras
             }
             if (resposta != PerguntaAtual.AlternativaCorreta && PerguntaAtual.Tentativas == 1)
             {
-                RespostaIncorreta();
-                return Posicao.Desempenho.Erro;
+                return PassarQuestao();
             }
 
             PerguntaAtual.Tentativas++;

@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class Alternativas : MonoBehaviour
 {
+    public void PassarQuestao()
+    {
+        Jogo.Instance.PassarQuestao();
+    }
 
 	public void Alternativa1()
 	{
