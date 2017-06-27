@@ -12,14 +12,15 @@ public class GameOver : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //StartCoroutine(ShowGameOver());
-        SendEmail();
+        StartCoroutine(ShowGameOver());
+
     }
 
-    //public IEnumerator ShowGameOver()
-    //{
-    //   SendEmail();
-    //}
+    public IEnumerator ShowGameOver()
+    {
+        yield return null;
+        SendEmail();
+    }
 
     private void SendEmail()
     {
