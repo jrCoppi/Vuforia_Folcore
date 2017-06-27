@@ -9,6 +9,7 @@ namespace Assets.Scripts.Cenario
         private IGameStatus status = new RegrasJogo();
         public int PosicaoAtual { get; set; }
         public int Pontuacao { get { return status.Pontuacao; } }
+        public string JogadorAtual { get; set; }
 
         private static Jogo _instance;
         public static Jogo Instance
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Cenario
             }
         }
 
-        public Jogo()
+        private Jogo()
         {
             posicoes = new Posicao[9];
             PosicaoAtual = 0;

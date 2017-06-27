@@ -12,7 +12,7 @@ namespace Assets.Scripts
         [Description("Vitória Regia")]
         Vitoria_Regia,
 
-        [Description("Boto cor-de-rosa")]
+        [Description("Boto Cor-De-Rosa")]
         Boto,
 
         [Description("Curupira")]
@@ -21,13 +21,13 @@ namespace Assets.Scripts
         [Description("Saci Pererê")]
         Saci,
 
-        [Description("Mula sem cabeça")]
+        [Description("Mula Sem Cabeça")]
         Mula_Sem_Cabeca,
 
         [Description("Boitata")]
         Boitata,
 
-        [Description("Iara, mãe da água")]
+        [Description("Iara, Mãe da Água")]
         Iara,
 
         [Description("Cuca")]
